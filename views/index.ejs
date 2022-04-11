@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="<%= bot.user ? bot.user.username : "" %> Ses Ve Oy Sıralaması" />
+
+    <title>Vote+</title>
+
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://cdn.discordapp.com/avatars/873192637438496768/510b56de1ae33c436332739c85955905.webp?size=1024"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container" style="padding-top:1%;">
+      <div>
+        <h1
+          style="text-align:center;border-bottom:2px solid white;padding-bottom:15px;"
+        >
+          <%= bot.user ? bot.user.username : "" %> Ses Ve Kalp Sıralaması
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div>
+            <h1
+              style="text-align:center;border-bottom:2px solid white;padding-bottom:15px;"
+            >
+              Top 10 Ses Sıralaması
+            </h1>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2">
+            <% out1.forEach((sunucu, index) => { %>
+            <div class="contributors">
+              <div class="contributor">
+                <div class="icon">
+                  <img
+                    src="<%= sunucu.icon %>"
+                    alt="<%= sunucu.name %>"
+                    draggable="false"
+                  />
+                </div>
+                <div class="user">
+                  <h1><%= sunucu.name %></h1>
+                  <h2 style="color: #4eccff">
+                    Seste <%= sunucu.size %> Kullanıcı!
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <div class="col">
+          <div>
+            <h1
+              style="text-align:center;border-bottom:2px solid white;padding-bottom:15px;"
+            >
+              Top 10 Kalp Sıralaması
+            </h1>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2">
+            <% out2.forEach((sunucu, index) => { %>
+            <div class="contributors">
+              <div class="contributor">
+                <div class="icon">
+                  <img
+                    src="<%= sunucu.icon %>"
+                    alt="<%= sunucu.name %>"
+                    draggable="false"
+                  />
+                </div>
+                <div class="user">
+                  <h1><%= sunucu.name.substring(0, 15) + (sunucu.name.length > 15 ? '...' : '') %>#<%= sunucu.sira %></h1>
+                  <h2 style="color: #4eccff">
+                    <%= sunucu.count %> Üye ve <%= sunucu.vote %> Oy 
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
